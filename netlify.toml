@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Reindirizza le richieste API alla funzione serverless di Netlify per nascondere la chiave API Gemini
+[[redirects]]
+  from = "/api/assistant"
+  to = "/.netlify/functions/assistant"
+  status = 200
+
+# Consente la navigazione SPA (React routing) su ogni pagina ricaricata
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
